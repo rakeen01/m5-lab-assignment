@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,63 +15,86 @@ class App extends Component {
   };
 
   render() {
-    const totalQty = this.state.products.reduce(
-      (sum, p) => sum + p.value,
-      0
-    );
+    const totalQty = this.state.products.reduce((sum, p) => sum + p.value, 0);
 
     return (
       <div style={{ backgroundColor: "#f3f3f3", minHeight: "100vh" }}>
-        
         {/* Header */}
         <div
           style={{
             backgroundColor: "#63C6E8",
-            padding: "20px 40px",
-            borderBottom: "1px solid #ddd",
+            padding: "22px 0",
+            borderBottom: "1px solid #d9d9d9",
           }}
         >
-          <h1 style={{ margin: 0 }}>{this.state.siteName}</h1>
-          <div style={{ fontSize: 14 }}>{totalQty} items</div>
+          <div
+            style={{
+              padding: "0 32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ fontSize: "40px", fontWeight: 300 }}>
+              {this.state.siteName}
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <FontAwesomeIcon icon={faShoppingCart} />
+              <span style={{ fontSize: 14 }}>{totalQty} items</span>
+            </div>
+          </div>
         </div>
 
-        {/* Product list */}
-        <div style={{ padding: 20 }}>
+        {/* Product list wrapper (gives the right border look) */}
+        <div
+          style={{
+            backgroundColor: "#fff",
+            margin: "0 18px",
+            borderLeft: "1px solid #e6e6e6",
+            borderRight: "1px solid #e6e6e6",
+          }}
+        >
           {this.state.products.map((p, i) => (
             <div
               key={i}
               style={{
-                background: "#fff",
-                border: "1px solid #e5e5e5",
-                padding: 20,
-                marginBottom: 10,
+                backgroundColor: "#fff",
+                borderBottom: "1px solid #e6e6e6",
+                padding: "16px 22px",
               }}
             >
-              <h3>{p.desc}</h3>
+              <div style={{ fontSize: 22, fontWeight: 500, marginBottom: 12 }}>
+                {p.desc}
+              </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: 60 }}>
-                <img src={p.image} alt={p.desc} width={110} />
+              <div style={{ display: "flex", alignItems: "center", gap: 70 }}>
+                <img
+                  src={p.image}
+                  alt={p.desc}
+                  style={{ width: 110, height: 110, objectFit: "contain" }}
+                />
 
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <div
                     style={{
-                      width: 40,
-                      height: 40,
-                      border: "2px solid #ddd",
+                      width: 42,
+                      height: 42,
+                      border: "2px solid #d9d9d9",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      fontSize: 16,
                     }}
                   >
                     {p.value}
                   </div>
-                  quantity
+                  <div style={{ fontSize: 16 }}>quantity</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     );
   }
