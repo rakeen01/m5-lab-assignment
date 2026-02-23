@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
   state = {
@@ -33,12 +35,38 @@ class App extends Component {
         </div>
 
         {/* Product list */}
-        <div style={{ padding: 40 }}>
+        <div style={{ padding: 20 }}>
           {this.state.products.map((p, i) => (
-            <div key={i} style={{ marginBottom: 40 }}>
+            <div
+              key={i}
+              style={{
+                background: "#fff",
+                border: "1px solid #e5e5e5",
+                padding: 20,
+                marginBottom: 10,
+              }}
+            >
               <h3>{p.desc}</h3>
-              <img src={p.image} alt={p.desc} width={120} />
-              <div>Quantity: {p.value}</div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 60 }}>
+                <img src={p.image} alt={p.desc} width={110} />
+
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div
+                    style={{
+                      width: 40,
+                      height: 40,
+                      border: "2px solid #ddd",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {p.value}
+                  </div>
+                  quantity
+                </div>
+              </div>
             </div>
           ))}
         </div>
